@@ -5,8 +5,9 @@ require_once __DIR__ . '/../Shared/JSONResponse.php';
 
 $UsersDA = new UsersDA();
 
-$UsersDA = $UsersDA->getUsers();
+$users = $UsersDA->getUsers();
+echo "hi";
 $view = new JSONResponse();
-$view->render($orders);
+$view->render($users);
 
 ?>

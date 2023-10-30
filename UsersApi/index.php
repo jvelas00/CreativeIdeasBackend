@@ -16,8 +16,8 @@ if (isset($uriParts[0])) {
 		require 'Logic/EndpointScripts/CreateUser.php';
 	} elseif($uriParts[0] === 'GetUsers') {
 		require 'Logic/EndpointScripts/GetUsers.php';
-	} elseif($uriParts[0] === 'GetUser') {
-		require 'Logic/EndpointScripts/GetUser.php'; 	
+	} elseif($uriParts[0] === 'Login') {
+		require 'Logic/EndpointScripts/Login.php'; 	
 	} else {
 		header('HTTP/1.1 404 Not Found');
 		echo 'No endpoint for';
@@ -32,4 +32,3 @@ if (isset($uriParts[0])) {
 		echo "/{$uriParts[$i]}";
 	}
 }
-?>
