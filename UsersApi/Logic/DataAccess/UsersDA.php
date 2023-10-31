@@ -1,20 +1,23 @@
 <?php
-require_once __DIR__. '/../../Models/user.php';
-require_once __DIR__. '/../../../Connection.php';
+require_once __DIR__ . '/../../Models/user.php';
+require_once __DIR__ . '/../../../Connection.php';
 
-class UsersDA {
+class UsersDA
+{
 	private $pdo;
-	
-	public function __construct() {
+
+	public function __construct()
+	{
 		$this->pdo = Connection::createConnection();
-		
-		if(!$this->pdo) {
+
+		if (!$this->pdo) {
 			echo "Unable to connect with the database";
 			exit;
 		}
 	}
-	
-	public function getUsers() {
+
+	public function getUsers()
+	{
 
 		try {
 			$query = "SELECT * FROM customers";
@@ -27,13 +30,13 @@ class UsersDA {
 				$users[] = $user;
 			}
 			return $users;
-			
 		} catch (PDOException $e) {
 			echo "Database error: " . $e->getMessage();
 		}
 	}
 
-	public function login($username, $password) {
+	public function login($username, $password)
+	{
 
 		try {
 			$query = "SELECT * FROM customers WHERE username = :username AND password = :password";
@@ -47,16 +50,35 @@ class UsersDA {
 				$user = new User($row['customer_id'], $row['username'], $row['password'], $row['name']);
 				$users[] = $user;
 			}
-			if($users){
-				return true;
-			}else{
+			if ($users) {
+				return $users;
+			} else {
 				return false;
 			}
-			
 		} catch (PDOException $e) {
 			echo "Database error: " . $e->getMessage();
 		}
 	}
 
+	public function createUser($username, $password, $name)
+	{
+		try {
+			$query = "INSERT INTO customers (username, password, name) VALUES (:username, :password, :name)";
+			$stmt = $this->pdo->prepare($query);
+			$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+			$stmt->bindParam(':password', $password, PDO::PARAM_STR);
+			$stmt->bindParam(':name', $name, PDO::PARAM_STR);
+			$stmt->execute();
+			$users = array();
+
+			// Check if the INSERT was successful
+			if ($stmt->rowCount() > 0) {
+				echo "Data inserted successfully.";
+			} else {
+				echo "Data insertion failed.";
+			}
+		} catch (PDOException $e) {
+			echo "Database error: " . $e->getMessage();
+		}
+	}
 }
-?>

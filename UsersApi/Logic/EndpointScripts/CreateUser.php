@@ -10,18 +10,14 @@ $UsersDA = new UsersDA();
 $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 if ($data !== null) {
-    if (isset($data['username']) && isset($data['password'])) {
+    if (isset($data['username']) && isset($data['password']) && isset($data['name'])) {
         $username = $data['username'];
         $password = $data['password'];
-        $user = $UsersDA->login($username, $password);
-        if ($user) {
-            $view = new JSONResponse();
-            $view->render($user);
-        } else {
-            echo 'Incorrect username or password';
-        }
+        $name = $data['name'];
+        $UsersDA->createUser($username, $password, $name);
+
     } else {
-        echo "No 'id' found in the request body.";
+        echo "Missing Parameters";
     }
 } else {
     echo "Invalid JSON data in the request body.";
