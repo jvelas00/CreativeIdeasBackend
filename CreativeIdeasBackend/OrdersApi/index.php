@@ -2,7 +2,7 @@
 if (isset($_SERVER['REQUEST_URI'])) {
     $uri = $_SERVER['REQUEST_URI'];
     $uriParts = explode('/', $uri);
-	$uriParts = array_slice($uriParts, 4);
+	$uriParts = array_slice($uriParts, 3);
 } else {
     $uriParts = [];
 }

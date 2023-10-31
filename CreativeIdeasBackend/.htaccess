@@ -1,0 +1,6 @@
+# Root .htaccess for top-level routing
+RewriteEngine On
+RewriteBase /CreativeIdeasBackend/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^OrdersApi/(.*)$ OrdersApi/index.php?uri=$1 [QSA,L]
