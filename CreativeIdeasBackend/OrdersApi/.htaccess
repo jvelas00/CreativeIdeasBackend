@@ -1,0 +1,6 @@
+# API-specific .htaccess for routing within the API's context
+RewriteEngine On
+RewriteBase /OrdersApi/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?uri=$1 [QSA,L]
