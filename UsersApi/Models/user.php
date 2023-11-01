@@ -1,39 +1,39 @@
 <?php
 class User {
-    public $user_id;
-    public $username;
-    public $password;
+    public $inv_id;
     public $name;
+    public $description;
+    public $price;
 
     public function __construct($order_id, $accepted, $pending, $date_ordered) {
-        $this->user_id = $order_id;
-        $this->username = $accepted;
-        $this->password = $pending;
-        $this->name = $date_ordered;
+        $this->inv_id = $order_id;
+        $this->name = $accepted;
+        $this->description = $pending;
+        $this->price = $date_ordered;
     }
     public function getuserId() {
-        return $this->user_id;
+        return $this->inv_id;
     }
     public function setuserId($user_id) {
-        $this->user_id = $user_id;
+        $this->inv_id = $user_id;
     }
     public function getUsername() {
-        return $this->username;
+        return $this->name;
     }
     public function setUsername($username) {
-        $this->username = $username;
+        $this->name = $username;
     }
     public function getPassword() {
-        return $this->password;
+        return $this->description;
     }
     public function setPassword($password) {
-        $this->password = $password;
+        $this->description = $password;
     }
     public function getName() {
-        return $this->name;
+        return $this->price;
     }
 
     public function setName($name) {
-        $this->name = $name;
+        $this->price = $name;
     }
 }

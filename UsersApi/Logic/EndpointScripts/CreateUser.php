@@ -11,10 +11,10 @@ $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 if ($data !== null) {
     if (isset($data['username']) && isset($data['password']) && isset($data['name'])) {
-        $username = $data['username'];
-        $password = $data['password'];
+        $inv_id = $data['username'];
+        $qty = $data['password'];
         $name = $data['name'];
-        $UsersDA->createUser($username, $password, $name);
+        $UsersDA->createUser($inv_id, $qty, $name);
 
     } else {
         echo "Missing Parameters";

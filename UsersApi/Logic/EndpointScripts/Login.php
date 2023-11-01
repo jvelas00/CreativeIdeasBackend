@@ -11,9 +11,9 @@ $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 if ($data !== null) {
     if (isset($data['username']) && isset($data['password'])) {
-        $username = $data['username'];
-        $password = $data['password'];
-        $user = $UsersDA->login($username, $password);
+        $inv_id = $data['username'];
+        $qty = $data['password'];
+        $user = $UsersDA->login($inv_id, $qty);
         if ($user) {
             $view = new JSONResponse();
             $view->render($user);
