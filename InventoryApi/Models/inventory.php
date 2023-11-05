@@ -12,7 +12,8 @@ class Inventory
         $this->inv_id = $inv_id;
         $this->name = $name;
         $this->description = $description;
-        $this->price = $qty;
+        $this->price = $price;
+        $this->qty = $qty;
     }
     public function getInvId()
     {
