@@ -1,13 +1,7 @@
 <?php
-// Allow requests from any origin
 header("Access-Control-Allow-Origin: *");
-
-// Allow the following HTTP methods
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-
-// Allow the following headers to be sent with the request
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
 if (isset($_SERVER['REQUEST_URI'])) {
     $uri = $_SERVER['REQUEST_URI'];
     $uriParts = explode('/', $uri);
@@ -17,7 +11,7 @@ if (isset($_SERVER['REQUEST_URI'])) {
 }
 // Check if 
 
-if (isset($uriParts[0])) {
+if (isset($uriParts[1])) {
 	// Check for API endpoint
 	if($uriParts[2] === 'Test'){
 		require 'Logic/EndpointScripts/Test.php';
