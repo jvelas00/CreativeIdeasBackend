@@ -13,11 +13,11 @@ if (isset($_SERVER['REQUEST_URI'])) {
 
 if (isset($uriParts[0])) {
 	// Check for API endpoint
-	if($uriParts[2] === 'Test'){
+	if($uriParts[1] === 'Test'){
 		require 'Logic/EndpointScripts/Test.php';
-	} elseif($uriParts[2] === 'getInventory') {
+	} elseif($uriParts[1] === 'getInventory') {
 		require 'Logic/EndpointScripts/getInventory.php';
-	} elseif($uriParts[2] === 'editQty') {
+	} elseif($uriParts[1] === 'editQty') {
 		require 'Logic/EndpointScripts/editQty.php';
 	} elseif($uriParts[1] === 'addItem') {
 		require 'Logic/EndpointScripts/addItem.php';
