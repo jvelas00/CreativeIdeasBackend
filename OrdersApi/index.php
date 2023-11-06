@@ -25,7 +25,7 @@ if (isset($uriParts[1])) {
 		header('HTTP/1.1 404 Not Found');
 		echo 'No endpoint for ';
 		for($i = 0; $i < count($uriParts); $i++) {
-			echo "/{$uriParts[$i]}";
+			echo "/{$uriParts[$i]} + ";
 		}
 	}
 } else {

@@ -111,5 +111,75 @@ class OrdersDA {
 		}
 	}
 
+	public function addOrder($customerId, $total) {
+		try{
+			$query = "INSERT INTO orders (customer_id, accepted, pending, date_ordered, total)
+			VALUES (:customer_id, :accepted, :pending, :date_ordered, :total)";
+			$accepted = false;
+			$pending = true;
+			$dateOrdered = new DateTime();
+			$formattedDate = $dateOrdered->format('Y-m-d');
+
+			$stmt = $this->pdo->prepare($query);
+			$stmt->bindParam(':customer_id', $customerId, PDO::PARAM_INT);
+			$stmt->bindParam(':accepted', $accepted, PDO::PARAM_BOOL);
+			$stmt->bindParam(':pending', $pending, PDO::PARAM_BOOL);
+			$stmt->bindParam('date_ordered', $formattedDate);
+			$stmt->bindParam(':total', $total, PDO::PARAM_STR);
+			$stmt->execute();
+
+			if ($stmt->rowCount() > 0) {
+				echo "Data inserted successfully.";
+			} else {
+				echo "Data was not inserted.";
+			}
+		} catch (PDOException $e) {
+			echo "Database error: " . $e->getMessage();
+		}
+	}
+
+	public function addOrderDetail($orderId, $invId, $qty) {
+		try {
+			$query = "INSERT INTO order_details (ORDER_ID, INV_ID, QTY)
+			VALUES (:orderId, :invId, :qty)";
+			$stmt = $this->pdo->prepare($query);
+			$stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+			$stmt->bindParam(':invId', $invId, PDO::PARAM_INT);
+			$stmt->bindParam(':qty', $qty, PDO::PARAM_INT);
+
+			$stmt->execute();
+			
+			if ($stmt->rowCount() > 0) {
+				echo "Data inserted successfully.";
+			} else {
+				echo "Data did not insert.";
+			}
+		} catch (PDOException $e) {
+			echo "Database error: " . $e->getMessage();
+		}
+	}
+
+	public function getLatestOrder($customerId) {
+		try{
+			$query = "SELECT * FROM orders WHERE CUSTOMER_ID = :customer_id ORDER BY DATE_ORDERED DESC LIMIT 1";
+			$stmt = $this->pdo->prepare($query);
+			$stmt->bindParam(':customer_id', $customerId, PDO::PARAM_INT);
+			if($stmt->execute()) {
+				$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+				if($row) {
+					$order = new Order($row['order_id'],$row['customer_id'],$row['accepted'],$row['pending'],$row['date_ordered'],$row['total']);
+					return $order;
+
+				}
+
+			} else {
+				return null;
+			}		
+		} catch (PDOException $e) {
+			echo "Database error: " . $e->getMessage();
+		}
+	}
+
 }
 ?>

@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /OrdersApi/
+RewriteBase /UsersApi/
 
 # Route requests to index.php (front controller) and pass the path as a query parameter
 RewriteCond %{REQUEST_FILENAME} !-f
