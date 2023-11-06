@@ -1,4 +1,7 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 if (isset($_SERVER['REQUEST_URI'])) {
     $uri = $_SERVER['REQUEST_URI'];
     $uriParts = explode('/', $uri);
@@ -7,16 +10,16 @@ if (isset($_SERVER['REQUEST_URI'])) {
     $uriParts = [];
 }
 // Check if 
-if (isset($uriParts[0])) {
+if (isset($uriParts[1])) {
 	
 	// Check for API endpoint
-	if($uriParts[0] === 'Test'){
+	if($uriParts[1] === 'Test'){
 		require 'Logic/EndpointScripts/Test.php';
-	} elseif($uriParts[0] === 'CreateOrder') {
+	} elseif($uriParts[1] === 'CreateOrder') {
 		require 'Logic/EndpointScripts/CreateOrder.php';
-	} elseif($uriParts[0] === 'GetOrders') {
+	} elseif($uriParts[1] === 'GetOrders') {
 		require 'Logic/EndpointScripts/GetOrders.php';
-	} elseif($uriParts[0] === 'GetOrder') {
+	} elseif($uriParts[1] === 'GetOrder') {
 		require 'Logic/EndpointScripts/GetOrder.php'; 	
 	} else {
 		header('HTTP/1.1 404 Not Found');
@@ -32,4 +35,3 @@ if (isset($uriParts[0])) {
 		echo "/{$uriParts[$i]}";
 	}
 }
-?>
