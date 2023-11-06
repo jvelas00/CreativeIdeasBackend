@@ -47,6 +47,13 @@ if($json === null) {
         foreach($items as $item) {
             $ordersDA->addOrderDetail($order->getOrderID(), $item['invID'], $item['qty']);
         }
+
+        $receipt = new OrderReceipt($createdItems, $total);
+
+        if($receipt) {
+            $view = new JSONResponse();
+            $view->render($receipt);
+        }
     } else {
         echo "Missing Parameters";
     }
