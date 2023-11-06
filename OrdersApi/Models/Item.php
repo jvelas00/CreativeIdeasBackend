@@ -1,5 +1,5 @@
 <?php
-class items
+class Item
 {
     public $name;
     public $itemTotal;

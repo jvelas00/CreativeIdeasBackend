@@ -3,6 +3,9 @@ require_once __DIR__ . '/../DataAccess/OrdersDA.php';
 require_once __DIR__ . '/../Shared/JSONResponse.php';
 require_once __DIR__ . '/../../../UsersApi/Logic/DataAccess/UsersDA.php';
 require_once __DIR__ . '/../../../InventoryApi/Logic/DataAccess/InventoryDA.php';
+require_once __DIR__ . '/../../../InventoryApi/Models/inventory.php';
+require_once __DIR__ . '/../../Models/Item.php';
+require_once __DIR__ . '/../../Models/OrderReceipt.php';
 
 
 $ordersDA = new OrdersDA();
@@ -26,19 +29,20 @@ if($json === null) {
             $qty = $item['qty'];
 
             $inv = $inventoryDA->getItem($invId);
+            $returnedItem = $inv[0];
             $qtyNeeded = 0;
-            $currentQty = $inv->getQty();
-            if($inv->getQty() < $qty){
+            $currentQty = $returnedItem->getQty();
+            if($returnedItem->getQty() < $qty){
                 while($currentQty < $qty){
-                    $currentQty += $inv->getReorderQty();
+                    $currentQty += 10; // add reorder qty?
                 }
                 $inventoryDA->editQty($invId, $currentQty);
             }
-            $inv = $inventoryDA->editQty($invID, $currentQty - $qty);
-            $itemTotal = $inv->getPrice() * $qty;
+            $inventoryDA->editQty($invId, $currentQty - $qty);
+            $itemTotal = $returnedItem->getPrice() * $qty;
             $total += $itemTotal;
-            $item = new Item($inv->getName(), $itemTotal, $qty);
-            $createdItems[] =  $item;
+            $detailsItem = new Item($returnedItem->getName(), $itemTotal, $qty);
+            $createdItems[] =  $detailsItem;
         }
 
         $ordersDA->addOrder($custId, $total);
