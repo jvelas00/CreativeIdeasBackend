@@ -1,0 +1,17 @@
+# Root .htaccess for top-level routing
+RewriteEngine On
+RewriteBase /CreativeIdeasBackend
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ordersapi/(.*)$ OrdersApi/index.php?uri=$1 [QSA,NC,L]
+RewriteRule ^usersapi/(.*)$ UsersApi/index.php?uri=$1 [QSA,NC,L]
+RewriteRule ^inventoryapiapi/(.*)$ InventoryApi/index.php?uri=$1 [QSA,NC,L]
+
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+</IfModule>

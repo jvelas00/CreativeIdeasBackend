@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /InventoryApi/
+
+# Route requests to index.php (front controller) and pass the path as a query parameter
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?path=$1 [QSA,L]
