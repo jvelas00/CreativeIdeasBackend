@@ -1,39 +1,55 @@
 <?php
 class User {
-    public $inv_id;
+    public $customer_id;
+    public $username;
+    public $password;
     public $name;
-    public $description;
-    public $price;
+    public $admin;
 
-    public function __construct($order_id, $accepted, $pending, $date_ordered) {
-        $this->inv_id = $order_id;
-        $this->name = $accepted;
-        $this->description = $pending;
-        $this->price = $date_ordered;
+    public function __construct($customer_id, $username, $password, $name, $admin) {
+        $this->customer_id = $customer_id;
+        $this->username = $username;
+        $this->password = $password;
+        $this->name = $name;
+        $this->admin = $admin;
     }
-    public function getuserId() {
-        return $this->inv_id;
+    public function getCustomerID() {
+        return $this->customer_id;
     }
-    public function setuserId($user_id) {
-        $this->inv_id = $user_id;
+
+    public function setCustomerID($customer_id) {
+        $this->customer_id = $customer_id;
     }
+
     public function getUsername() {
-        return $this->name;
+        return $this->username;
     }
+
     public function setUsername($username) {
-        $this->name = $username;
+        $this->username = $username;
     }
+
     public function getPassword() {
-        return $this->description;
+        return $this->password;
     }
+
     public function setPassword($password) {
-        $this->description = $password;
+        $this->password = $password;
     }
+
     public function getName() {
-        return $this->price;
+        return $this->name;
     }
 
     public function setName($name) {
-        $this->price = $name;
+        $this->name = $name;
+    }
+
+    public function isAdmin() {
+        return $this->admin;
+    }
+
+    public function setAdmin($admin) {
+        $this->admin = $admin;
     }
 }

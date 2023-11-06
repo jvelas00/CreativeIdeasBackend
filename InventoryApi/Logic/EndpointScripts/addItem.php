@@ -14,8 +14,8 @@ if ($data !== null) {
         $name = $data['name'];
         $description = $data['description'];
         $price = $data['price'];
-        $qty = $data['qty'];
-        $inventoryDA->addItem($name, $description, $price, $qty);
+        $password = $data['qty'];
+        $inventoryDA->addItem($name, $description, $price, $password);
 
     } else {
         echo "Missing Parameters";
