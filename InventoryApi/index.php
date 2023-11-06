@@ -2,21 +2,21 @@
 if (isset($_SERVER['REQUEST_URI'])) {
     $uri = $_SERVER['REQUEST_URI'];
     $uriParts = explode('/', $uri);
-	$uriParts = array_slice($uriParts, 3);
+	$uriParts = array_slice($uriParts, 2);
 } else {
     $uriParts = [];
 }
 // Check if 
 
-if (isset($uriParts[1])) {
+if (isset($uriParts[0])) {
 	// Check for API endpoint
-	if($uriParts[1] === 'Test'){
+	if($uriParts[2] === 'Test'){
 		require 'Logic/EndpointScripts/Test.php';
-	} elseif($uriParts[1] === 'getInventory') {
+	} elseif($uriParts[2] === 'getInventory') {
 		require 'Logic/EndpointScripts/getInventory.php';
-	} elseif($uriParts[1] === 'editQty') {
+	} elseif($uriParts[2] === 'editQty') {
 		require 'Logic/EndpointScripts/editQty.php';
-	} elseif($uriParts[1] === 'addItem') {
+	} elseif($uriParts[2] === 'addItem') {
 		require 'Logic/EndpointScripts/addItem.php'; 	
 	} else {
 		header('HTTP/1.1 404 Not Found');
