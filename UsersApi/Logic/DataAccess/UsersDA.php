@@ -26,7 +26,7 @@ class UsersDA
 			$users = array();
 
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$user = new User($row['customer_id'], $row['username'], $row['password'], $row['name']);
+				$user = new User($row['customer_id'], $row['username'], $row['password'], $row['name'], $row['admin']);
 				$users[] = $user;
 			}
 			return $users;
@@ -44,16 +44,14 @@ class UsersDA
 			$stmt->bindParam(':username', $username, PDO::PARAM_STR);
 			$stmt->bindParam(':password', $password, PDO::PARAM_STR);
 			$stmt->execute();
-			$users = array();
 
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$user = new User($row['customer_id'], $row['username'], $row['password'], $row['name']);
-				$users[] = $user;
+				$user = new User($row['customer_id'], $row['username'], $row['password'], $row['name'], $row['admin']);
 			}
-			if ($users) {
-				return $users;
+			if ($user) {
+				return $user;
 			} else {
-				return false;
+				return null;
 			}
 		} catch (PDOException $e) {
 			echo "Database error: " . $e->getMessage();

@@ -11,9 +11,9 @@ $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 if ($data !== null) {
     if (isset($data['inv_id']) && isset($data['qty'])) {
-        $inv_id = $data['inv_id'];
-        $qty = $data['qty'];
-        $inventoryDA->editQty($inv_id, $qty);
+        $username = $data['inv_id'];
+        $password = $data['qty'];
+        $inventoryDA->editQty($username, $password);
     } else {
         echo "No 'id' found in the request body.";
     }
