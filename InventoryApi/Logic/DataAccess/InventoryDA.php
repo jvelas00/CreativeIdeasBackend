@@ -49,7 +49,7 @@ class InventoryDA
 			$stmt->execute();
 
 			if ($stmt->rowCount() > 0) {
-				echo "Data isnerted successfully.";
+				echo "Data inserted successfully.";
 			} else {
 				echo "Data did not update.";
 			}
