@@ -48,11 +48,7 @@ class InventoryDA
 			$stmt->bindParam(':qty', $qty, PDO::PARAM_STR);
 			$stmt->execute();
 
-			if ($stmt->rowCount() > 0) {
-				echo "Data inserted successfully.";
-			} else {
-				echo "Data did not update.";
-			}
+
 		} catch (PDOException $e) {
 			echo "Database error: " . $e->getMessage();
 		}
@@ -67,11 +63,6 @@ class InventoryDA
 			$stmt->bindParam(':inv_id', $inv_id, PDO::PARAM_STR);
 			$stmt->execute();
 
-			if ($stmt->rowCount() > 0) {
-				echo "Data updated successfully.";
-			} else {
-				echo "Data did not update.";
-			}
 		} catch (PDOException $e) {
 			echo "Database error: " . $e->getMessage();
 		}

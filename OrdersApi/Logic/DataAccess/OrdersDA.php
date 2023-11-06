@@ -128,11 +128,7 @@ class OrdersDA {
 			$stmt->bindParam(':total', $total, PDO::PARAM_STR);
 			$stmt->execute();
 
-			if ($stmt->rowCount() > 0) {
-				echo "Data inserted successfully.";
-			} else {
-				echo "Data was not inserted.";
-			}
+
 		} catch (PDOException $e) {
 			echo "Database error: " . $e->getMessage();
 		}
@@ -148,12 +144,7 @@ class OrdersDA {
 			$stmt->bindParam(':qty', $qty, PDO::PARAM_INT);
 
 			$stmt->execute();
-			
-			if ($stmt->rowCount() > 0) {
-				echo "Data inserted successfully.";
-			} else {
-				echo "Data did not insert.";
-			}
+
 		} catch (PDOException $e) {
 			echo "Database error: " . $e->getMessage();
 		}
