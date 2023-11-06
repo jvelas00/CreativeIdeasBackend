@@ -5,7 +5,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 if (isset($_SERVER['REQUEST_URI'])) {
     $uri = $_SERVER['REQUEST_URI'];
     $uriParts = explode('/', $uri);
-	$uriParts = array_slice($uriParts, 2);
+	$uriParts = array_slice($uriParts, 3;
 } else {
     $uriParts = [];
 }

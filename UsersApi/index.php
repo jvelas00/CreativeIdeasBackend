@@ -5,7 +5,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 if (isset($_SERVER['REQUEST_URI'])) {
     $uri = $_SERVER['REQUEST_URI'];
     $uriParts = explode('/', $uri);
-	$uriParts = array_slice($uriParts, 2);
+	$uriParts = array_slice($uriParts, 3);
 } else {
     $uriParts = [];
 }
@@ -13,13 +13,13 @@ if (isset($_SERVER['REQUEST_URI'])) {
 
 if (isset($uriParts[1])) {
 	// Check for API endpoint
-	if($uriParts[2] === 'Test'){
+	if($uriParts[1] === 'Test'){
 		require 'Logic/EndpointScripts/Test.php';
-	} elseif($uriParts[2] === 'CreateUser') {
+	} elseif($uriParts[1] === 'CreateUser') {
 		require 'Logic/EndpointScripts/CreateUser.php';
-	} elseif($uriParts[2] === 'GetUsers') {
+	} elseif($uriParts[1] === 'GetUsers') {
 		require 'Logic/EndpointScripts/GetUsers.php';
-	} elseif($uriParts[2] === 'Login') {
+	} elseif($uriParts[1] === 'Login') {
 		require 'Logic/EndpointScripts/Login.php'; 	
 	} else {
 		header('HTTP/1.1 404 Not Found');
